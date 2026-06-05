@@ -1,0 +1,70 @@
+{
+  "name": "Ingredient",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Ingredient name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "vegetable",
+        "fruit",
+        "meat",
+        "seafood",
+        "dairy",
+        "spice",
+        "grain",
+        "legume",
+        "herb",
+        "condiment",
+        "oil",
+        "sweetener",
+        "other"
+      ],
+      "description": "Ingredient category"
+    },
+    "common_regions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Regions where commonly used"
+    },
+    "substitutes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Possible substitutes"
+    },
+    "is_common": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is it a common/basic ingredient like salt, water"
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

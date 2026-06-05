@@ -1,0 +1,36 @@
+{
+  "name": "SavedRecipe",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "User who saved the recipe"
+    },
+    "recipe_id": {
+      "type": "string",
+      "description": "ID of the saved recipe"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Personal notes about the recipe"
+    }
+  },
+  "required": [
+    "user_email",
+    "recipe_id"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "data.user_email": "{{user.email}}"
+    },
+    "update": {
+      "data.user_email": "{{user.email}}"
+    },
+    "delete": {
+      "data.user_email": "{{user.email}}"
+    }
+  }
+}

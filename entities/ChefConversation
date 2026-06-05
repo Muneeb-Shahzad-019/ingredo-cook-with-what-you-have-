@@ -1,0 +1,36 @@
+{
+  "name": "ChefConversation",
+  "type": "object",
+  "properties": {
+    "recipe_id": {
+      "type": "string",
+      "description": "ID of the recipe this conversation is about"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user"
+    },
+    "messages": {
+      "type": "array",
+      "description": "Array of chat messages",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "recipe_id",
+    "user_email"
+  ]
+}

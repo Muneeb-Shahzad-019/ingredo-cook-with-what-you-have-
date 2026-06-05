@@ -1,0 +1,170 @@
+{
+  "name": "Recipe",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Recipe name"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Recipe image URL"
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of ingredients needed"
+    },
+    "instructions": {
+      "type": "string",
+      "description": "Step-by-step cooking instructions"
+    },
+    "cuisine": {
+      "type": "string",
+      "description": "Cuisine type (Italian, Asian, etc.)"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Asian",
+          "Continental",
+          "Italian",
+          "Pakistani",
+          "Indian",
+          "Vegan",
+          "Vegetarian",
+          "Non-Veg",
+          "Desserts",
+          "Breakfast",
+          "Soup",
+          "High-Protein",
+          "Keto",
+          "Kid-Friendly",
+          "Quick"
+        ]
+      },
+      "description": "Recipe categories"
+    },
+    "dietary_restrictions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Gluten-Free",
+          "Dairy-Free",
+          "Nut-Free",
+          "Egg-Free",
+          "Soy-Free",
+          "Low-Carb",
+          "Sugar-Free"
+        ]
+      },
+      "description": "Dietary restrictions",
+      "default": []
+    },
+    "country": {
+      "type": "string",
+      "description": "Country of origin"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ],
+      "description": "Difficulty level"
+    },
+    "cook_time": {
+      "type": "number",
+      "description": "Cooking time in minutes"
+    },
+    "prep_time": {
+      "type": "number",
+      "description": "Preparation time in minutes"
+    },
+    "servings": {
+      "type": "number",
+      "description": "Number of servings"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "user",
+        "ai",
+        "internet"
+      ],
+      "default": "user",
+      "description": "Recipe source"
+    },
+    "likes_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of likes"
+    },
+    "views_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of views for trending calculation"
+    },
+    "nutrition": {
+      "type": "object",
+      "description": "Nutritional information",
+      "properties": {
+        "calories": {
+          "type": "number"
+        },
+        "protein": {
+          "type": "string"
+        },
+        "carbs": {
+          "type": "string"
+        },
+        "fat": {
+          "type": "string"
+        }
+      }
+    },
+    "video_url": {
+      "type": "string",
+      "description": "Optional video tutorial link"
+    }
+  },
+  "required": [
+    "name",
+    "ingredients",
+    "instructions"
+  ],
+  "rls": {
+    "create": {},
+    "read": {},
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
